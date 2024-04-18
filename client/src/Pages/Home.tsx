@@ -50,7 +50,7 @@ export default function Home() {
   };
   const getAllJobs=async()=>{
     try{
-      const pr1=fetch("http://localhost:3000/getAllJobs")
+      const pr1=fetch("https://procareer-be.onrender.com/getAllJobs")
       const pr2= fetch("jobs.json")
       const [jobs1,jobs2]=await Promise.allSettled([pr1,pr2])
       let data1=0

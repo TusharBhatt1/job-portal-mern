@@ -40,12 +40,11 @@ export default function PostJob() {
     data.postedBy = email;
     data.postingDate = today;
 
-    fetch("http://localhost:3000/post-job", {
+    fetch("https://procareer-be.onrender.com/post-job", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
-    }).then((res) => {
-      console.log(res);
+    }).then(() => {
       toast.success("Job Posted Successfully");
       reset();
     });

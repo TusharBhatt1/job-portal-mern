@@ -20,7 +20,7 @@ export default function UpdateJob() {
   } = useForm<Inputs>();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/getjob/${id}`)
+    fetch(`https://procareer-be.onrender.com/getjob/${id}`)
       .then((res) => res.json())
       .then((data) => setJob(data));
   }, [id]);
@@ -56,7 +56,7 @@ export default function UpdateJob() {
       postedBy: formData.postedBy || job.postedBy,
     };
 
-    fetch(`http://localhost:3000/updatejob/${id}`, {
+    fetch(`https://procareer-be.onrender.com/updatejob/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
