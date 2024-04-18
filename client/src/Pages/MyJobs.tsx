@@ -32,19 +32,6 @@ export default function MyJobs() {
       });
   }, []);
 
-  // //pagination
-  // const indexOfLastItem=currentPage+itemsPerPage
-  // const indexOfFirstItem=indexOfLastItem-itemsPerPage
-
-  // const currentJobs=jobs.slice(indexOfFirstItem,indexOfLastItem)
-
-  // const onNextPage=()=>{
-  //   if(indexOfLastItem > jobs.length) setCurrentPage(currentPage+1)
-  // }
-  // const onPrevPage=()=>{
-  //   if(currentPage > ) setCurrentPage(currentPage+1)
-  // }
-
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
