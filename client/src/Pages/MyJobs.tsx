@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { JobType } from "./Home";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import useAllData from "../hooks/useAllData";
 
@@ -14,7 +14,8 @@ export default function MyJobs() {
   useEffect(() => {
     let user = localStorage.getItem("user");
     if (!user) {
-      toast.error("Kindly login first");
+      // toast.error("Kindly login first");
+      alert("Kindly login first");
       navigate("/");
       return;
     }

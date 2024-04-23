@@ -1,8 +1,8 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "../Components/Button";
 import { useEffect, useState } from "react";
-import { toast } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+// import { toast } from 'react-toastify';
+// import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import useAllData from "../hooks/useAllData";
 
@@ -36,7 +36,8 @@ export default function PostJob() {
   const onSubmit: SubmitHandler<Inputs> = (data) => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
      if(!localStorage.getItem("user")) {
-      toast.error("Login to post job")
+      // toast.error("Login to post job")
+      alert("Login to post job")
       return 
      }
     // Assuming email is defined earlier
@@ -48,7 +49,8 @@ export default function PostJob() {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(data),
     }).then(() => {
-      toast.success("Job Posted Successfully");
+      // toast.success("Job Posted Successfully");
+      alert("Job Posted Successfully");
       setFetchedAllJobs(false)
       setFetchedMyJobs(false)
       reset();
@@ -58,8 +60,9 @@ export default function PostJob() {
   useEffect(() => {
     let user = localStorage.getItem("user");
     if (!user) {
-      toast.dark("Kindly Login to Post Job");
+      // toast.dark("Kindly Login to Post Job");
       navigate("/");
+      alert("Kindly Login to Post Job")
       return;
     }
     user = JSON.parse(user);

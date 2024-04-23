@@ -5,7 +5,7 @@ import Banner from "../Components/Banner";
 import Jobs from "../Components/Jobs";
 import Sidebar from "../Components/sidebar/Sidebar";
 import NewsLetter from "../Components/NewsLetter";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import useAllData from "../hooks/useAllData";
 
 export interface JobType {
@@ -73,7 +73,8 @@ export default function Home() {
     } catch (err) {
       console.log(err);
       setAllJobs([]);
-      toast.error("Failed to fetch all jobs");
+      // toast.error("Failed to fetch all jobs");
+      alert("Failed to fetch all jobs");
     } finally {
       setLoading(false);
     }
