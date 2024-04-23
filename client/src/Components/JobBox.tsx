@@ -2,8 +2,8 @@
 //@ts-nocheck
 import { JobType } from "../Pages/Home";
 import { MdOutlineAccessTime } from "react-icons/md";
-import { CiCalendar } from "react-icons/ci";
-import { CiLocationOn } from "react-icons/ci";
+// import { CiCalendar } from "react-icons/ci";
+// import { CiLocationOn } from "react-icons/ci";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
@@ -80,7 +80,8 @@ export default function JobBox({ job }: { job: JobType }) {
           </span>
           <span>{experienceLevel}</span>
           <span className="flex items-center gap-1">
-            <CiCalendar /> {postingDate}
+            {/* <CiCalendar />  */}
+            {postingDate}
           </span>
         </div>
         <p className="text-sm">{description}</p>
@@ -88,7 +89,7 @@ export default function JobBox({ job }: { job: JobType }) {
       <div></div>
 
       <div className="flex items-center gap-1">
-        <CiLocationOn />
+        {/* <CiLocationOn /> */}
 
         <span className="text-sm">{jobLocation}</span>
       </div>
