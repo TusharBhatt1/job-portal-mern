@@ -16,7 +16,7 @@ import { toast } from "react-toastify";
 
 export default function Navbar() {
   const firebaseConfig = {
-    apiKey: "AIzaSyDU6jbiYYF6GM1wZVE7G1uqzbuLI4nhTDY",
+    apiKey: process.env.google_auth_api_key,
     authDomain: "job-portal-mern-c0ff5.firebaseapp.com",
     projectId: "job-portal-mern-c0ff5",
     storageBucket: "job-portal-mern-c0ff5.appspot.com",
