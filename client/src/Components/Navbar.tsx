@@ -13,6 +13,8 @@ import {
 } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Navbar() {
   const firebaseConfig = {
