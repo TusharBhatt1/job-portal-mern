@@ -1,9 +1,11 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "../Components/Button";
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import useAllData from "../hooks/useAllData";
+
 
 export type Inputs = {
   jobTitle: string;
@@ -21,6 +23,7 @@ export type Inputs = {
 };
 
 export default function PostJob() {
+  const {setFetchedAllJobs,setFetchedMyJobs}=useAllData()
   const [email, setEmail] = useState("");
   const [today, setToday] = useState("");
   const {
@@ -46,6 +49,8 @@ export default function PostJob() {
       body: JSON.stringify(data),
     }).then(() => {
       toast.success("Job Posted Successfully");
+      setFetchedAllJobs(false)
+      setFetchedMyJobs(false)
       reset();
     });
   };

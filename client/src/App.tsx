@@ -5,7 +5,7 @@ import PostJob from "./Pages/PostJob";
 import MyJobs from "./Pages/MyJobs";
 import UpdateJob from "./Pages/UpdateJob";
 import Navbar from "./Components/Navbar";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from 'react-toastify';
 
 export default function App() {
   return (

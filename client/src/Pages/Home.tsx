@@ -6,7 +6,7 @@ import Jobs from "../Components/Jobs";
 import Sidebar from "../Components/sidebar/Sidebar";
 import NewsLetter from "../Components/NewsLetter";
 import { toast } from "react-toastify";
-
+import useAllData from "../hooks/useAllData";
 
 export interface JobType {
   _id?: number;
@@ -26,8 +26,11 @@ export interface JobType {
 }
 
 export default function Home() {
+  const { allJobs, setAllJobs, fetchedAllJobs, setFetchedAllJobs } =
+    useAllData();
   const [query, setQuery] = useState("");
-  const [jobs, setJobs] = useState<JobType[] | null>(null);
+  const [loading, setLoading] = useState(false);
+
   const [selectedCategory, setSelectedCategory] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
@@ -48,34 +51,40 @@ export default function Home() {
       setCurrentPage(currentPage - 1);
     }
   };
-  const getAllJobs=async()=>{
-    try{
-      const pr1=fetch("https://procareer-be.onrender.com/getAllJobs")
-      const pr2= fetch("jobs.json")
-      const [jobs1,jobs2]=await Promise.allSettled([pr1,pr2])
-      let data1=0
-      if(jobs1.status==="fulfilled"){
-        data1=await jobs1.value.json()
-      }
-      let data2=0
-      if(jobs2.status==="fulfilled") data2=await jobs2.value.json()
-      
-    if(data1) setJobs(data1)
-    if(data2) setJobs((prev)=>[...prev,...data2])
+  const getAllJobs = async () => {
+    setLoading(true);
+    try {
+      const pr1 = fetch("https://procareer-be.onrender.com/getAllJobs");
+      const pr2 = fetch("jobs.json");
+      const [jobs1, jobs2] = await Promise.allSettled([pr1, pr2]);
+      let data1 = 0;
+      await new Promise((res) => setTimeout(res, 3000));
 
-    
+      if (jobs1.status === "fulfilled") {
+        data1 = await jobs1.value.json();
+      }
+      let data2 = 0;
+      if (jobs2.status === "fulfilled") data2 = await jobs2.value.json();
+
+      if (data1.length > 0 || data2.length > 0) {
+        setAllJobs([...data1, ...data2]); // Directly pass the concatenated array
+      }
+      setFetchedAllJobs(true);
+    } catch (err) {
+      console.log(err);
+      setAllJobs([]);
+      toast.error("Failed to fetch all jobs");
+    } finally {
+      setLoading(false);
     }
-    catch(err){
-      console.log(err)
-      toast.error("Failed to fetch all jobs")
-    }
-  }
+  };
   useEffect(() => {
-   getAllJobs()
+    if (fetchedAllJobs) return;
+    getAllJobs();
   }, []);
 
-  const filteredItems = jobs?.filter((job) =>
-    job.jobTitle.toLowerCase().includes(query.toLowerCase())
+  const filteredItems = allJobs?.filter((job) =>
+    job?.jobTitle?.toLowerCase().includes(query.toLowerCase())
   );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -92,17 +101,19 @@ export default function Home() {
     selectedCategory: string,
     query: string
   ) => {
-    let filteredJobs = jobs;
+    let filteredJobs = allJobs;
 
     if (query) {
-      filteredJobs = filteredJobs?.filter((job) =>
-        job.jobTitle.toLowerCase().includes(query.toLowerCase()) || job.companyName.toLowerCase().includes(query.toLowerCase())
+      filteredJobs = filteredJobs?.filter(
+        (job) =>
+          job?.jobTitle.toLowerCase().includes(query.toLowerCase()) ||
+          job.companyName?.toLowerCase().includes(query.toLowerCase())
       );
     }
 
     if (selectedCategory) {
       filteredJobs = filteredJobs?.filter(
-        ({ jobLocation, maxPrice, employmentType}) =>
+        ({ jobLocation, maxPrice, employmentType }) =>
           jobLocation.toLowerCase() === selectedCategory.toLowerCase() ||
           parseInt(maxPrice * 1000) <= parseInt(selectedCategory) ||
           employmentType.toLowerCase() === selectedCategory.toLowerCase()
@@ -116,18 +127,17 @@ export default function Home() {
     return filteredJobs;
   };
 
-  const result = filterData(jobs || [], selectedCategory, query);
+  const result = filterData(allJobs || [], selectedCategory, query);
 
   return (
     <div>
-
       <Banner query={query} handleChange={handleChange} />
       <div className="flex flex-col gap-2 md:grid grid-cols-4 py-7 bg-slate-100 md:px-7 gap-4">
         <Sidebar handleRadioFilter={handleRadioFilter} />
-        
+
         <div className="col-span-2 flex flex-col">
-          <Jobs jobs={result} />
-     
+          <Jobs loading={loading} jobs={result} />
+
           {/* pagination */}
           {result.length > 0 && (
             <div className="flex justify-center items-center gap-4 py-4">

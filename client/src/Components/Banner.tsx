@@ -16,7 +16,7 @@ export default function Banner({
     let timer;
     return function (args) {
       if (timer) clearTimeout(timer);
-      timer = setTimeout(()=>cb(args), 1000);
+      timer = setTimeout(()=>cb(args),300);
     };
   };
   const handleChangeBetter=debounce(handleChange)
