@@ -1,7 +1,7 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
 import { JobType } from "../Pages/Home";
-import { MdOutlineAccessTime } from "react-icons/md";
+// import { MdOutlineAccessTime } from "react-icons/md";
 // import { CiCalendar } from "react-icons/ci";
 // import { CiLocationOn } from "react-icons/ci";
 import { toast } from "react-toastify";
@@ -76,7 +76,8 @@ export default function JobBox({ job }: { job: JobType }) {
             $ {minPrice}-{maxPrice}K / year
           </span>
           <span className="flex items-center gap-1">
-            <MdOutlineAccessTime /> {employmentType}
+            {/* <MdOutlineAccessTime />  */}
+            {employmentType}
           </span>
           <span>{experienceLevel}</span>
           <span className="flex items-center gap-1">
