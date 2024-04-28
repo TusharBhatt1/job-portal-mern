@@ -57,7 +57,7 @@ export default function MyJobs() {
   return (
     <div className="flex justify-center items-center mt-4">
       <div className="flex flex-col gap-4">
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-col gap-2 sm:flex-row items-center justify-center gap-4">
           <span>All Jobs: {filteredJobs.length}</span>
           <input
             onChange={handleSearch}
@@ -74,10 +74,10 @@ export default function MyJobs() {
                   <th scope="col" className="px-6 py-3">
                     Job Title
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-6 py-3 hidden sm:block">
                     Location
                   </th>
-                  <th scope="col" className="px-6 py-3">
+                  <th scope="col" className="px-6 py-3 hidden sm:block">
                     Salary
                   </th>
                   <th scope="col" className="px-6 py-3">
@@ -107,8 +107,8 @@ export default function MyJobs() {
                       >
                         {job.jobTitle}
                       </th>
-                      <td className="px-6 py-4">{job.jobLocation}</td>
-                      <td className="px-6 py-4">
+                      <td className="px-6 py-4 hidden sm:block">{job.jobLocation}</td>
+                      <td className="px-6 py-4 hidden sm:block">
                         {job.minPrice}-{job.maxPrice}$
                       </td>
                       <td className="px-6 py-4">
