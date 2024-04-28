@@ -1,8 +1,6 @@
 import { useForm, SubmitHandler } from "react-hook-form";
 import Button from "../Components/Button";
 import { useEffect, useState } from "react";
-// import { toast } from 'react-toastify';
-// import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import useAllData from "../hooks/useAllData";
 
