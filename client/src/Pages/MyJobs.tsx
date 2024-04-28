@@ -50,8 +50,10 @@ export default function MyJobs() {
     fetch(`http://localhost:3000/delete-post/${id}`, { method: "DELETE" });
     setFilteredJobs(filteredJobs.filter((job) => job._id !== id));
   };
-
-  // if(filteredJobs.length<1) return <p className="text-center mt-7">No Job posted!</p>
+  
+  
+   
+  // if(filteredJobs.length==0) return <p className="text-center mt-7">No Job posted!</p>
   return (
     <div className="flex justify-center items-center mt-4">
       <div className="flex flex-col gap-4">
@@ -88,7 +90,7 @@ export default function MyJobs() {
               </thead>
               <tbody>
                 {loading ? (
-                  <p className="p-4">Loading...</p>
+                  <Loading/>
                 ) : filteredJobs.length === 0 ? (
                   <tr>
                     <td className="text-center py-4">No job posted.</td>
@@ -139,4 +141,19 @@ export default function MyJobs() {
       </div>
     </div>
   );
+
 }
+function Loading()
+  {
+    return (
+  
+      <div>
+        <div role="status" className="max-w-full p-4 animate-pulse bg-white">
+          <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px] mb-2.5"></div>
+          <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 mb-2.5"></div>
+        </div>
+      </div>
+  
+)
+  }
