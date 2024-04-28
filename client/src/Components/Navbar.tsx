@@ -2,8 +2,8 @@
 //@ts-nocheck
 import { useEffect, useState} from "react";
 import Button from "./Button";
-import { FaBarsStaggered } from "react-icons/fa6";
-import { MdOutlineCancel } from "react-icons/md";
+import { RiMenu4Fill } from "react-icons/ri";
+import { IoIosCloseCircleOutline } from "react-icons/io";
 import { Link } from "react-router-dom";
 import {
   getAuth,
@@ -142,10 +142,10 @@ export default function Navbar() {
             <button onClick={handleMenuToggler}>
               {isMenuOpen ? (
                 // open
-                <MdOutlineCancel size={22} />
+                <IoIosCloseCircleOutline size={22} />
               ) : (
                 // close
-                <FaBarsStaggered size={22} />
+                <RiMenu4Fill size={22} />
               )}
             </button>
           </div>
