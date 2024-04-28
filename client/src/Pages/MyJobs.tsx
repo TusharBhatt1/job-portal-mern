@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { JobType } from "./Home";
 // import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAllData from "../hooks/useAllData";
 
 export default function MyJobs() {
@@ -56,7 +56,7 @@ export default function MyJobs() {
   // if(filteredJobs.length==0) return <p className="text-center mt-7">No Job posted!</p>
   return (
     <div className="flex justify-center items-center mt-4">
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-7">
         <div className="flex flex-col gap-2 sm:flex-row items-center justify-center gap-4">
           <span>All Jobs: {filteredJobs.length}</span>
           <input
@@ -68,8 +68,8 @@ export default function MyJobs() {
         {/* table */}
         <div>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <table className="w-full text-left text-xs rtl:text-right text-gray-500 dark:text-gray-400">
+              <thead className="text-xs sm:text-lg text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Job Title
@@ -103,7 +103,7 @@ export default function MyJobs() {
                     >
                       <th
                         scope="row"
-                        className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                        className="px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white"
                       >
                         {job.jobTitle}
                       </th>
@@ -112,12 +112,12 @@ export default function MyJobs() {
                         {job.minPrice}-{job.maxPrice}$
                       </td>
                       <td className="px-6 py-4">
-                        <a
-                          href={`/updatejob/${job._id}`}
+                        <Link
+                          to={`/updatejob/${job._id}`}
                           className="text-blue-500"
                         >
                           Edit
-                        </a>
+                        </Link>
                       </td>
                       <td className="px-6 py-4">
                        
