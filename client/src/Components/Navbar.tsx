@@ -2,7 +2,7 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
 import Button from "./Button";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   getAuth,
   GoogleAuthProvider,
@@ -32,31 +32,36 @@ export default function Navbar() {
   const [isLogin, setIslogin] = useState(false);
   const [selected, setSelected] = useState(0);
   const [user, setUser] = useState(null); // Initialize user state
+  const location = useLocation();
+  const navigate=useNavigate()
   const googleProvider = new GoogleAuthProvider();
   const handleLogin = () => {
+    setIsMenuOpen(false)
     signInWithPopup(auth, googleProvider)
       .then((result) => {
         const user = result.user;
         setIslogin(true);
         localStorage.setItem("user", JSON.stringify(user));
         toast.success("Successfully logged in");
-
+  
         // ...
       })
-      .catch((error) => {
+      .catch(() => {
         alert("Login failed");
-        console.log(error);
         // ...
       });
   };
 
   const handleLogout = () => {
-    signOut(auth).then(() => console.log("LOGGED OUT SUCCESSFULLY"));
+    signOut(auth).then(() => toast.info("Logged out successfully"));
     localStorage.removeItem("user");
+  
     setIslogin(false);
     setUser(null);
+    navigate("/")
+    setIsMenuOpen(false)
   };
-  const location = useLocation();
+ 
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
