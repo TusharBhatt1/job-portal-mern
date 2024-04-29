@@ -68,16 +68,16 @@ export default function MyJobs() {
         {/* table */}
         <div>
           <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table className="w-full text-left text-xs rtl:text-right text-gray-500 dark:text-gray-400">
+            <table className="w-full text-left text-xs text-center  text-gray-500 dark:text-gray-400">
               <thead className="text-xs sm:text-lg text-center text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" className="px-6 py-3">
                     Job Title
                   </th>
-                  <th scope="col" className="px-6 py-3 hidden sm:block">
+                  <th scope="col" className="px-6 py-3 hidden sm:inline-block">
                     Location
                   </th>
-                  <th scope="col" className="px-6 py-3 hidden sm:block">
+                  <th scope="col" className="px-6 py-3 hidden sm:inline-block">
                     Salary
                   </th>
                   <th scope="col" className="px-6 py-3">
@@ -107,8 +107,8 @@ export default function MyJobs() {
                       >
                         {job.jobTitle}
                       </th>
-                      <td className="px-6 py-4 hidden sm:block">{job.jobLocation}</td>
-                      <td className="px-6 py-4 hidden sm:block">
+                      <td className="px-6 py-4 hidden sm:inline-block">{job.jobLocation}</td>
+                      <td className="px-6 py-4 hidden sm:inline-block">
                         {job.minPrice}-{job.maxPrice}$
                       </td>
                       <td className="px-6 py-4">

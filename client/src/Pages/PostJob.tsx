@@ -136,7 +136,7 @@ export default function PostJob() {
                 type="number"
                 {...register("minPrice", { required: true })}
                 className="border bg-white p-2"
-                placeholder="Enter minimum salary"
+                placeholder="Enter minimum salary in $"
               />
               {errors.minPrice && (
                 <span className="text-red-400">This field is required</span>
@@ -148,7 +148,7 @@ export default function PostJob() {
                 type="number"
                 {...register("maxPrice", { required: true })}
                 className="border bg-white p-2"
-                placeholder="Enter maximum salary"
+                placeholder="Enter maximum salary in $"
               />
               {errors.maxPrice && (
                 <span className="text-red-400">This field is required</span>
