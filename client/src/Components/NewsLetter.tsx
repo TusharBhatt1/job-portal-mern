@@ -17,6 +17,7 @@ export default function NewsLetter() {
       <input
         className="w-full border border-gray-300 px-4 py-3 rounded-md shadow-sm focus:outline-none focus:border-blue-400 sm:max-w-xs"
         type="email"
+        disabled
         placeholder="Enter your email"
         required
       />
